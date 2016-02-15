@@ -25,7 +25,11 @@ export default class Notes extends Component {
   constructor(props) {
     super(props);
 
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.notes),
       note: '',
@@ -79,12 +83,12 @@ export default class Notes extends Component {
         <TextInput
           style={styles.searchInput}
           value={this.state.note}
-          onChange={this.handleChange.bind(this)}
+          onChange={this.handleChange}
           placeholder="New Note"
         />
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
+          onPress={this.handleSubmit}
           underlayColor="#88D4F5">
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableHighlight>
@@ -98,7 +102,7 @@ export default class Notes extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
-          renderHeader={() => <Badge userInfo={this.props.userInfo}/>}
+          renderHeader={() => <Badge userInfo={this.props.userInfo} />}
         />
         {this.footer()}
       </View>

@@ -17,6 +17,9 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
 
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
       username: '',
       isLoading: false,
@@ -80,11 +83,11 @@ export default class Main extends Component {
         <TextInput
           style={styles.searchInput}
           value={this.state.username}
-          onChange={this.handleChange.bind(this)}
+          onChange={this.handleChange}
         />
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
+          onPress={this.handleSubmit}
           underlayColor="white">
           <Text style={styles.buttonText}>SEARCH</Text>
         </TouchableHighlight>

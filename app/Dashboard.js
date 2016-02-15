@@ -22,6 +22,14 @@ const propTypes = {
 
 export default class Dashboard extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.goToProfile = this.goToProfile.bind(this);
+    this.goToRepos = this.goToRepos.bind(this);
+    this.goToNotes = this.goToNotes.bind(this);
+  }
+
   makeBackground(btn) {
     const obj = {
       flexDirection: 'row',
@@ -86,19 +94,19 @@ export default class Dashboard extends Component {
         <Image source={{uri: this.props.userInfo.avatar_url}} style={styles.image} />
         <TouchableHighlight
           style={this.makeBackground(0)}
-          onPress={this.goToProfile.bind(this)}
+          onPress={this.goToProfile}
           underlayColor="#88D4F5">
           <Text style={styles.buttonText}>View Profile</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={this.makeBackground(1)}
-          onPress={this.goToRepos.bind(this)}
+          onPress={this.goToRepos}
           underlayColor="#E39EBF">
           <Text style={styles.buttonText}>View Repositories</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={this.makeBackground(2)}
-          onPress={this.goToNotes.bind(this)}
+          onPress={this.goToNotes}
           underlayColor="#9BAAF3">
           <Text style={styles.buttonText}>Take Notes</Text>
         </TouchableHighlight>
