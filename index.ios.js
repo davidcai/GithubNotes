@@ -11,9 +11,16 @@ class GithubNotes extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.box}><Text>Box 1</Text></View>
-        <View style={styles.box}><Text>Box 2</Text></View>
-        <View style={styles.box}><Text>Box 3</Text></View>
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.ios.js
+        </Text>
+        <Text style={styles.instructions}>
+          Press Cmd+R to reload,{'\n'}
+          Cmd+D or shake for dev menu
+        </Text>
       </View>
     );
   }
@@ -22,14 +29,20 @@ class GithubNotes extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  },
-  box: {
     flex: 1,
-    borderWidth: 2,
-    borderColor: '#000',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5
   }
 });
 
