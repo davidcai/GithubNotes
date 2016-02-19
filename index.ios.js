@@ -2,22 +2,19 @@ import React, {
   AppRegistry,
   Component,
   StyleSheet,
-  NavigatorIOS
+  View,
+  Text
 } from 'react-native';
-
-import Main from './app/Main';
 
 
 class GithubNotes extends Component {
   render() {
     return (
-      <NavigatorIOS
-        style={styles.container}
-        initialRoute={{
-          title: 'Github Notes',
-          component: Main,
-        }}
-      />
+      <View style={styles.container}>
+        <View style={styles.box}><Text>Box 1</Text></View>
+        <View style={styles.box}><Text>Box 2</Text></View>
+        <View style={styles.box}><Text>Box 3</Text></View>
+      </View>
     );
   }
 }
@@ -25,8 +22,14 @@ class GithubNotes extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  box: {
     flex: 1,
-    backgroundColor: '#111111'
+    borderWidth: 2,
+    borderColor: '#000',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
