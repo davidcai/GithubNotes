@@ -4,13 +4,8 @@ import React, {
   View,
   Text,
   TextInput,
-  TouchableHighlight,
-  ActivityIndicatorIOS
+  TouchableHighlight
 } from 'react-native';
-
-import api from './utils/api';
-import Dashboard from './Dashboard';
-
 
 export default class Main extends Component {
 
@@ -21,9 +16,7 @@ export default class Main extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      username: '',
-      isLoading: false,
-      error: false
+      username: ''
     };
   }
 
@@ -33,48 +26,10 @@ export default class Main extends Component {
     });
   }
 
-  handleResponse(res) {
-    if (res.message === 'Not Found') {
-      this.setState({
-        error: 'User not found',
-        isLoading: false
-      });
-    } else {
-
-      this.props.navigator.push({
-        title: res.name || 'Select an Option',
-        component: Dashboard,
-        passProps: {userInfo: res}
-      });
-
-      this.setState({
-        isLoading: false,
-        error: false,
-        username: ''
-      });
-    }
-  }
-
   handleSubmit() {
-    this.setState({
-      isLoading: true,
-    });
-
-    api.getBio(this.state.username)
-      .then((jsonRes) => this.handleResponse(jsonRes))
-      .catch((err) => {
-        this.setState({
-          isLoading: false,
-          error: `There was an error: ${err}`
-        });
-      })
   }
 
   render() {
-    const showErr = (
-      this.state.error ? <Text> {this.state.error} </Text> : <View></View>
-    );
-
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.title}>
@@ -91,17 +46,10 @@ export default class Main extends Component {
           underlayColor="white">
           <Text style={styles.buttonText}>SEARCH</Text>
         </TouchableHighlight>
-        <ActivityIndicatorIOS
-          animating={this.state.isLoading}
-          color="#111"
-          size="large"
-        />
-        {showErr}
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   mainContainer: {
