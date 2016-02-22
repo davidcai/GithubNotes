@@ -9,8 +9,6 @@ import React, {
 } from 'react-native';
 
 import api from './utils/api';
-import Dashboard from './Dashboard';
-
 
 export default class Main extends Component {
 
@@ -22,8 +20,7 @@ export default class Main extends Component {
 
     this.state = {
       username: '',
-      isLoading: false,
-      error: false
+      isLoading: false
     };
   }
 
@@ -34,13 +31,7 @@ export default class Main extends Component {
   }
 
   handleResponse(res) {
-    if (res.message === 'Not Found') {
-      this.setState({
-        error: 'User not found',
-        isLoading: false
-      });
-    } else {
-
+    if (res.message !== 'Not Found') {
       this.props.navigator.push({
         title: res.name || 'Select an Option',
         component: Dashboard,
@@ -49,7 +40,6 @@ export default class Main extends Component {
 
       this.setState({
         isLoading: false,
-        error: false,
         username: ''
       });
     }
@@ -64,17 +54,12 @@ export default class Main extends Component {
       .then((jsonRes) => this.handleResponse(jsonRes))
       .catch((err) => {
         this.setState({
-          isLoading: false,
-          error: `There was an error: ${err}`
+          isLoading: false
         });
       })
   }
 
   render() {
-    const showErr = (
-      this.state.error ? <Text> {this.state.error} </Text> : <View></View>
-    );
-
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.title}>
@@ -96,7 +81,6 @@ export default class Main extends Component {
           color="#111"
           size="large"
         />
-        {showErr}
       </View>
     );
   }
