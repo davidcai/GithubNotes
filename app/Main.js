@@ -72,7 +72,7 @@ export default class Main extends Component {
 
   render() {
     const showErr = (
-      this.state.error ? <Text> {this.state.error} </Text> : <View></View>
+      this.state.error ? <Text style={styles.error}> {this.state.error} </Text> : <View></View>
     );
 
     return (
@@ -104,6 +104,10 @@ export default class Main extends Component {
 
 
 const styles = StyleSheet.create({
+  error: {
+    color: '#AF1F1E',
+    textAlign: 'center'
+  },
   mainContainer: {
     flex: 1,
     padding: 30,
