@@ -24,46 +24,10 @@ export default class Notes extends Component {
 
   constructor(props) {
     super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
-
     this.state = {
-      dataSource: this.ds.cloneWithRows(this.props.notes),
-      note: '',
-      error: ''
+      dataSource: this.ds.cloneWithRows(this.props.notes)
     };
-  }
-
-  handleChange(e) {
-    this.setState({
-      note: e.nativeEvent.text
-    });
-  }
-
-  handleSubmit() {
-    const note = this.state.note;
-    this.setState({
-      note: ''
-    });
-
-    api.addNote(this.props.userInfo.login, note)
-      .then((data) => {
-        api.getNotes(this.props.userInfo.login)
-          .then((data) => {
-            this.setState({
-              dataSource: this.ds.cloneWithRows(data)
-            });
-          })
-        ;
-      })
-      .catch((error) => {
-        console.log('Request failed', error);
-        this.setState({error});
-      })
-    ;
   }
 
   renderRow(rowData) {
@@ -77,25 +41,6 @@ export default class Notes extends Component {
     );
   }
 
-  footer() {
-    return (
-      <View style={styles.footerContainer}>
-        <TextInput
-          style={styles.searchInput}
-          value={this.state.note}
-          onChange={this.handleChange}
-          placeholder="New Note"
-        />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleSubmit}
-          underlayColor="#88D4F5">
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableHighlight>
-      </View>
-    );
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -104,7 +49,6 @@ export default class Notes extends Component {
           renderRow={this.renderRow}
           renderHeader={() => <Badge userInfo={this.props.userInfo} />}
         />
-        {this.footer()}
       </View>
     );
   }
