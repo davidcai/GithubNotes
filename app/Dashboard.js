@@ -12,7 +12,6 @@ import React, {
 import api from './utils/api';
 import Profile from './Profile';
 import Repositories from './Repositories';
-import Notes from './Notes';
 
 
 const propTypes = {
@@ -73,19 +72,6 @@ export default class Dashboard extends Component {
   }
 
   goToNotes() {
-    api.getNotes(this.props.userInfo.login)
-      .then((jsonRes) => {
-        jsonRes = jsonRes || {};
-        this.props.navigator.push({
-          component: Notes,
-          title: 'Notes',
-          passProps: {
-            notes: jsonRes,
-            userInfo: this.props.userInfo
-          }
-        });
-      })
-    ;
   }
 
   render() {
