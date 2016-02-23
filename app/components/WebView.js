@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 
-export default class Web extends Component {
+export default class Web_View extends Component {
 
   render() {
     return (
@@ -24,7 +24,7 @@ export default class Web extends Component {
 }
 
 
-Web.propTypes = propTypes;
+Web_View.propTypes = propTypes;
 
 
 const styles = StyleSheet.create({
